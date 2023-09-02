@@ -24,7 +24,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         scheduler.interval interval do
           resp = Request.api_call(symbol, interval)
           puts resp
-          puts "marrentinhoww"
+
           if resp.length() != 0
             NotifierMailer.notify_user(current_user, resp).deliver_now
           end
