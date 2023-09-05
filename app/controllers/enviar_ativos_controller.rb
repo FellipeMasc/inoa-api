@@ -1,4 +1,6 @@
 require "#{Rails.root}/lib/request" 
+require 'rufus-scheduler'
+
 
 class EnviarAtivosController < ApplicationController
 	before_action :authenticate_user!
@@ -10,6 +12,12 @@ class EnviarAtivosController < ApplicationController
 		ativos = JSON.parse(current_user.ativos)
 
 		render json: {ativos: ativos, intervalo_checagem: current_user.intervalo_checagem, data_series: data_series }
+	end
+
+	def update
+		puts params
+
+
 	end
 
 end

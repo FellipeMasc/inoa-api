@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   devise_for :users, path: '', path_names: {
     sign_in: 'login',
@@ -9,11 +11,11 @@ Rails.application.routes.draw do
   }
 
   scope :enviar_ativos do
-    patch '' => 'enviar_ativos#update'
+    patch ':user_id' => 'enviar_ativos#update'
     get '' => 'enviar_ativos#index'
+    post 'schedule' => 'schedule_ativos#schedule'
   end
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  mount Sidekiq::Web => '/jobs'
+
 end
