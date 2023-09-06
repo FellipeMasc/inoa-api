@@ -16,7 +16,9 @@ class EnviarAtivosController < ApplicationController
 
 	def update
 		puts params
-
+		
+		user = User.find_by(id: params["user_id"])
+		validation = user.update(ativos: params["ativos"])
 
 	end
 

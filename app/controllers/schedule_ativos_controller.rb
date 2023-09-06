@@ -17,18 +17,29 @@ class ScheduleAtivosController < ApplicationController
 			user = User.find_by(email: email)
 		end
 		
+		puts "oi"
+		puts email
 		api_info = { "email" => email, "interval" => interval, "symbol" => symbol }
 
 
 		if comando === "start"
 			Sidekiq::Cron::Job.create(name: "#{email}", cron: "*/#{interval} * * * *", class: 'ScheduleAtivoJob', args: api_info)
-			# Sidekiq.set_schedule("#{email}", { 'every' => ['1m'], 'class' => 'ScheduleAtivoJob' })
 		elsif comando === "pause"
 			job = Sidekiq::Cron::Job.find("#{email}")
-			job.disable!
+			if job
+				job.disable!
+			end
+		elsif comando === "restart"
+			job = Sidekiq::Cron::Job.find("#{email}")
+			if job
+				Sidekiq::Cron::Job.find("#{email}").destroy
+			end
+			Sidekiq::Cron::Job.create(name: "#{email}", cron: "*/#{interval} * * * *", class: 'ScheduleAtivoJob', args: api_info)
 		else
 			job = Sidekiq::Cron::Job.find("#{email}")
-			job.enable!
+			if job
+				job.enable!
+			end
 		end
 
 	end

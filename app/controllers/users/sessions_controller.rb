@@ -15,7 +15,6 @@ class Users::SessionsController < Devise::SessionsController
     puts "oi"
     puts params
     user = User.find_by(email: params[:user][:email])
-    puts user.id, user.email
 
     if user&.valid_password?(params[:user][:password])
       session[:user_id] = user.id
