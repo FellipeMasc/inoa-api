@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     get '' => 'enviar_ativos#index'
     post 'schedule' => 'schedule_ativos#schedule'
   end
-
+  #monitorar jobs, seria bom colocar no scopo do authenticated user, caso contrario qualquer usuario poderia acessar
   mount Sidekiq::Web => '/jobs'
 
 end

@@ -4,6 +4,6 @@ Aplicação para monitorar o preço de ativos cadastrados por usuários e execut
 
 - Arquivo Docker para iniciar o servidor rails
 
-- Para o redis é necessário apenas iniciá-lo na porta 6379
+- Para o redis é necessário apenas iniciá-lo na porta 6379 [Redis](https://redis.io/), [Sidekiq](https://github.com/sidekiq/sidekiq)
 
 - Banco de dados local SQlite3
