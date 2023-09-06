@@ -1,24 +1,9 @@
-# README
+# Challenge INOA
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Aplicação para monitorar o preço de ativos cadastrados por usuários e executar um background job utilizando o sidekiq e o redis.
 
-Things you may want to cover:
+- Arquivo Docker para iniciar o servidor rails
 
-* Ruby version
+- Para o redis é necessário apenas iniciá-lo na porta 6379
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Banco de dados local SQlite3
